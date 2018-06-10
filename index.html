@@ -6,6 +6,7 @@
   <meta name="description" content="A project for Mobile Web Specialist course at Udacity">
   <meta name="author" content="Elizabeth Lei">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -21,8 +22,7 @@
     <section id="map-container">
       <div id="map"></div>
     </section>
-    <section>
-      <div class="filter-options">
+    <section class="filter-options">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
@@ -30,7 +30,8 @@
         <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
-      </div>
+    </section>
+    <section class="restaurants-list">
       <ul id="restaurants-list"></ul>
     </section>
   </main>
@@ -41,7 +42,7 @@
 
 
   <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    Copyright (c) 2018 <a href="/">Restaurant Reviews</a> All Rights Reserved.
   </footer>
 
 </body>

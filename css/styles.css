@@ -141,7 +141,7 @@ select {
   line-height: 1;
   font-weight: 300;
   height: calc(var(--spacing-unit)*6);
-  margin: calc(var(--spacing-unit)*1);
+  margin: var(--spacing-unit);
   padding: 0 calc(var(--spacing-unit)*1.5);
   width: 200px;
 }
@@ -149,7 +149,6 @@ select {
 .restaurants-list {
   position: relative;
   margin: 0 auto;
-  max-width: 1040px;
 }
 #restaurants-list {
   display: flex;
@@ -300,7 +299,7 @@ select {
   }
 }
 
-/* Tablet breakpoint (641px - 1039px) */
+/* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {
   h1 {
     font-size: 3rem;
@@ -333,6 +332,3 @@ select {
     width: 200px;
   }
 }
-
-/* Desktop and larger screen breakpoint - 1040px and above */
-/* @media(min-width: 1040px) {} isn't necessary because of fluidity using flexbox. The restaurant list will display 3 columns on the desktop and beyond. */

@@ -10,14 +10,12 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-  <header>
+  <header class="header">
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
-
   <main id="maincontent">
     <section id="map-container">
       <div id="map"></div>
@@ -35,16 +33,11 @@
       <ul id="restaurants-list"></ul>
     </section>
   </main>
-
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv3MsfMQwOVWAjvt4B9gFKJCm_Ql6xNfE&libraries=places&callback=initMap"></script>
-
-
   <footer id="footer">
     Copyright (c) 2018 <a href="/">Restaurant Reviews</a> All Rights Reserved.
   </footer>
-
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv3MsfMQwOVWAjvt4B9gFKJCm_Ql6xNfE&libraries=places&callback=initMap"></script>
 </body>
-
 </html>

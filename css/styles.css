@@ -50,7 +50,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 	display: block;
 }
 #maincontent {
-  padding-top: calc(var(--spacing-unit)*11);
+  padding-top: calc(var(--spacing-unit)*8.75);
 }
 #footer {
   background-color: var(--bg-color-gray);
@@ -71,7 +71,7 @@ nav {
   z-index: 100;
   position: fixed;
   width: 100%;
-  max-height: calc(var(--spacing-unit)*11);
+  max-height: calc(var(--spacing-unit)*8.75);
   transition-duration: .2s;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition-property: max-height,box-shadow;
@@ -80,7 +80,7 @@ nav {
 h1 {
   color: var(--color-white);
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 2rem;
   font-style: italic;
   line-height: normal;
   margin: 0 auto;
@@ -126,15 +126,13 @@ h1 {
 .filter-options {
   width: 100%;
   background-color: var(--bg-color-green);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding: var(--spacing-unit);
 }
 .filter-options h2 {
-  display: inline;
-  color: var(--color-white);
-  font-size: 1.2rem;
-  line-height: 1;
-  font-weight: normal;
-  font-style: italic;
-  margin: 0;
+  display: none;
 }
 select {
   background-color: white;
@@ -143,7 +141,7 @@ select {
   line-height: 1;
   font-weight: 300;
   height: calc(var(--spacing-unit)*6);
-  margin: calc(var(--spacing-unit)*2) 0 calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*2);
+  margin: calc(var(--spacing-unit)*1);
   padding: 0 calc(var(--spacing-unit)*1.5);
   width: 200px;
 }
@@ -151,12 +149,12 @@ select {
 .restaurants-list {
   position: relative;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1040px;
 }
 #restaurants-list {
   display: flex;
   flex-flow: row wrap;
-  align-items: stretch;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: calc(var(--spacing-unit)*2);
@@ -293,3 +291,48 @@ select {
 #restaurant-hours td {
   color: #666;
 }
+
+/* Mobile (screen size 640px and below) */
+/* Below is a special case for mobile screen size 460px and above */
+@media(min-width: 460px) {
+  .filter-options {
+    justify-content: center;
+  }
+}
+
+/* Tablet breakpoint (641px - 1039px) */
+@media(min-width: 641px) {
+  h1 {
+    font-size: 3rem;
+  }
+  nav {
+    max-height: calc(var(--spacing-unit)*11);
+  }
+  #maincontent {
+    padding-top: calc(var(--spacing-unit)*11);
+  }
+  .filter-options h2 {
+    display: flex;
+    align-self: center;
+    color: var(--color-white);
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0;
+  }
+  select {
+    background-color: white;
+    border: 1px solid #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: 300;
+    height: calc(var(--spacing-unit)*6);
+    margin: calc(var(--spacing-unit)*2) 0 calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*2);
+    padding: 0 calc(var(--spacing-unit)*1.5);
+    width: 200px;
+  }
+}
+
+/* Desktop and larger screen breakpoint - 1040px and above */
+/* @media(min-width: 1040px) {} isn't necessary because of fluidity using flexbox. The restaurant list will display 3 columns on the desktop and beyond. */

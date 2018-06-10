@@ -11,7 +11,6 @@
   --bg-color-green: #2e7c31;
   --spacing-unit: 8px;
 }
-
 /* CSS Document */
 * {
   box-sizing: border-box;
@@ -33,7 +32,7 @@ li {
 a,
 a:hover,
 a:focus {
-  color: var(--color-white);
+  color: var(--color-green);
 	text-decoration: none;
 }
 *:focus {
@@ -59,18 +58,17 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   letter-spacing: 1px;
   padding: calc(var(--spacing-unit)*2);
 }
-#footer a {
-  color: var(--color-green);
-}
 /* ====================== Navigation ====================== */
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
 nav {
   padding: calc(var(--spacing-unit)*2) 0;
   background-color: var(--bg-color-green);
   text-align: center;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-  z-index: 100;
-  position: fixed;
-  width: 100%;
   max-height: calc(var(--spacing-unit)*8.75);
   transition-duration: .2s;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
@@ -78,44 +76,35 @@ nav {
   opacity: 0.9;
 }
 h1 {
-  color: var(--color-white);
   font-weight: 400;
   font-size: 2rem;
   font-style: italic;
   line-height: normal;
   margin: 0 auto;
 }
-#breadcrumb {
-  padding: 10px 40px 16px;
-  list-style: none;
-  background-color: #eee;
-  font-size: 17px;
-  margin: 0;
-  width: calc(50% - 80px);
+h1 a {
+  color: var(--color-white);
 }
-
+#breadcrumb {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: calc(var(--spacing-unit)*2);
+  background: linear-gradient(to right,#ecebe9,#f4f4f4,#f6f6f6,#fafafa);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 /* Display list items side by side */
 #breadcrumb li {
-    display: inline;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
 }
-
 /* Add a slash symbol (/) before/behind each list item */
 #breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
+    padding: 0 calc(var(--spacing-unit)*0.5) 0 var(--spacing-unit);
     content: "/\00a0";
-}
-
-/* Add a color to all links inside the list */
-#breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-}
-
-/* Add a color on mouse-over */
-#breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
 }
 /* ====================== Map ====================== */
 #map {
@@ -200,30 +189,9 @@ select {
   padding: calc(var(--spacing-unit)*2);
   text-transform: uppercase;
 }
-
 /* ====================== Restaurant Details ====================== */
-.inside header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-.inside #map-container {
-  background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
-  right: 0;
-  top: 80px;
-  width: 50%;
-}
-.inside #map {
-  background-color: #ccc;
-  height: 100%;
-  width: 100%;
-}
-.inside #footer {
-  bottom: 0;
-  width: 50%;
+.inside #maincontent {
+  padding-top: calc(var(--spacing-unit)*15.75);
 }
 #restaurant-name {
   color: #f18200;
@@ -253,14 +221,12 @@ select {
   text-transform: uppercase;
 	width: 90%;
 }
-#restaurant-container, #reviews-container {
+#restaurant-container, 
+#reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  padding: 140px 40px 30px;
-  width: 50%;
-}
-#reviews-container {
-  padding: 30px 40px 80px;
+  padding: 32px;
+  width: 100%;
 }
 #reviews-container h2 {
   color: #f58500;
@@ -290,7 +256,6 @@ select {
 #restaurant-hours td {
   color: #666;
 }
-
 /* Mobile (screen size 640px and below) */
 /* Below is a special case for mobile screen size 460px and above */
 @media(min-width: 460px) {
@@ -298,7 +263,6 @@ select {
     justify-content: center;
   }
 }
-
 /* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {
   h1 {
@@ -309,6 +273,9 @@ select {
   }
   #maincontent {
     padding-top: calc(var(--spacing-unit)*11);
+  }
+  .inside #maincontent {
+    padding-top: calc(var(--spacing-unit)*18);
   }
   .filter-options h2 {
     display: flex;

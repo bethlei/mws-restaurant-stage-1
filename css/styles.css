@@ -188,6 +188,7 @@ select {
   margin: calc(var(--spacing-unit)*3) 0 0;
   padding: calc(var(--spacing-unit)*2);
   text-transform: uppercase;
+  cursor: pointer;
 }
 /* ====================== Restaurant Details ====================== */
 .inside #maincontent {

@@ -201,7 +201,9 @@ select {
   margin: calc(var(--spacing-unit)*4) 0 calc(var(--spacing-unit)*2);
 }
 #restaurant-img {
-	width: 100%;
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
 }
 #restaurant-cuisine {
   margin: calc(var(--spacing-unit)*2) 0 0;

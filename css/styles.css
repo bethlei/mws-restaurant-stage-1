@@ -262,6 +262,7 @@ select {
 }
 #reviews-list li p {
   text-align: left;
+  line-height: 1.2;
   margin: 0;
   padding: 0 calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*2);
 }
@@ -318,4 +319,13 @@ select {
   select {
     margin: calc(var(--spacing-unit)*2) 0 calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*2);
   }
+  #reviews-list {
+    margin: 0 auto;
+    width: 80vw;
+  }
 }
+@media(min-width: 1025px) {
+  #reviews-list {
+    width: 60vw;
+  }
+]

@@ -82,7 +82,9 @@ h1 {
   line-height: normal;
   margin: 0 auto;
 }
-h1 a {
+h1 a, 
+h1 a:hover,
+h1 a:focus {
   color: var(--color-white);
 }
 #breadcrumb {

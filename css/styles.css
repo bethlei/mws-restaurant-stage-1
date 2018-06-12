@@ -238,7 +238,7 @@ select {
 #reviews-container {
   margin-bottom: calc(var(--spacing-unit)*3);
 }
-#reviews-container h2 {
+#reviews-container h3 {
   font-size: 1.5rem;
   font-weight: 300;
   color: var(--text-color-alt1);

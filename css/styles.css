@@ -64,8 +64,9 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   width: 100%;
   z-index: 100;
 }
-nav {
+h1 {
   padding: calc(var(--spacing-unit)*2) 0;
+  margin: 0;
   background-color: var(--bg-color-green);
   text-align: center;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -75,7 +76,7 @@ nav {
   transition-property: max-height,box-shadow;
   opacity: 0.9;
 }
-h1 {
+h1 a {
   font-weight: 400;
   font-size: 2rem;
   font-style: italic;
@@ -294,10 +295,10 @@ select {
 }
 /* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {
-  h1 {
+  h1 a {
     font-size: 3rem;
   }
-  nav {
+  h1 {
     max-height: calc(var(--spacing-unit)*11);
   }
   #maincontent {

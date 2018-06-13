@@ -13,7 +13,7 @@
 <body class="inside">
   <header class="header">
     <h1><a href="/">Restaurant Reviews</a></h1>
-    <nav>
+    <nav aria-label="Breadcrumb">
       <ol id="breadcrumb">
         <li><a href="/">Home</a></li>
       </ol>
@@ -21,17 +21,17 @@
   </header>
   <main id="maincontent">
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" aria-label="Map"></div>
     </section>
     <section id="restaurant-container">
       <h2 id="restaurant-name"></h2>
       <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <div id="restaurant-hours"></div>
+      <p id="restaurant-cuisine" aria-label="Restaurant Cuisine"></p>
+      <address id="restaurant-address" aria-label="Restaurant Address"></address>
+      <div id="restaurant-hours" aria-label="Restaurant Hours"></div>
     </section>
     <section id="reviews-container">
-      <ul id="reviews-list"></ul>
+      <ul id="reviews-list" aria-label="Review List"></ul>
     </section>
   </main>
   <footer id="footer">

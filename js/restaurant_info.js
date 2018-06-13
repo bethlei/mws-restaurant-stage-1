@@ -131,10 +131,12 @@ createReviewHTML = (review) => {
   const name = document.createElement('div');
   name.innerHTML = review.name;
   name.className = 'name';
+  name.setAttribute('aria-label', `Reviewer's name`);
   div.appendChild(name);
 
   const date = document.createElement('div');
   date.innerHTML = review.date;
+  date.setAttribute('aria-label', `Review date`);
   div.appendChild(date);
 
   li.appendChild(div);
@@ -142,10 +144,12 @@ createReviewHTML = (review) => {
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
   rating.className = 'rating';
+  rating.setAttribute('aria-label', `Rating`);
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.setAttribute('aria-label', `Review comments`);
   li.appendChild(comments);
 
   return li;
@@ -158,6 +162,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
+  li.setAttribute('aria-current', `page`);
   breadcrumb.appendChild(li);
 }
 

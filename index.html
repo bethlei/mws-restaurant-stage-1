@@ -15,10 +15,10 @@
     <h1><a href="/">Restaurant Reviews</a></h1>
   </header>
   <main id="maincontent">
-    <section id="map-container">
-      <div id="map" aria-label="Map"></div>
+    <section id="map-container" aria-label="Map">
+      <div id="map"></div>
     </section>
-    <section class="filter-options">
+    <section class="filter-options" aria-label="Restaurant Filter Options">
       <h2>Filter Results</h2>
       <label for="neighborhoods-select">
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
@@ -31,8 +31,8 @@
         </select>
       </label>  
     </section>
-    <section class="restaurants-list">
-      <ul id="restaurants-list" aria-label="Restaurant List"></ul>
+    <section class="restaurants-list" aria-label="Restaurant List">
+      <ul id="restaurants-list"></ul>
     </section>
   </main>
   <footer id="footer">

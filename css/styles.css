@@ -16,18 +16,18 @@
   box-sizing: border-box;
 }
 html, body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1;
-  text-align: center;
-  background-color: var(--color-white);
-  color: var(--color-black);
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
 }
 body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-black);
+  text-align: center;
+  background-color: var(--color-white);
   min-height: 100%;
 }
 ul, 
@@ -50,7 +50,7 @@ a:focus {
 img{
   border: 0;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+header, nav, section, footer {
   display: block;
 }
 .wrapper {
@@ -112,7 +112,6 @@ h1 {
   display: flex;
   flex-flow: row nowrap;
   flex-shrink: 0;
-  box-sizing: border-box;
   align-self: stretch;
   align-items: center;
   height: calc(var(--spacing-unit)*8.75);
@@ -325,9 +324,6 @@ select {
   }
   h1 {
     height: calc(var(--spacing-unit)*11);
-  }
-  header {
-    min-height: calc(var(--spacing-unit)*11);
   }
   .filter-options h2 {
     display: inline-block;

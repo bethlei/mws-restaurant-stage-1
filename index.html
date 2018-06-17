@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a href="#neighborhoods-select" id="skip-link" class="skip-link">Skip to select neighborhoods</a>
+  <div class="wrapper">
   <header class="header">
     <h1><a href="/">Restaurant Reviews</a></h1>
   </header>
@@ -19,9 +21,9 @@
       <div id="map"></div>
     </section>
     <section class="filter-options" aria-label="Restaurant Filter Options">
-      <h2>Filter Results</h2>
+      <h2 id="filter-restaurants">Filter Results</h2>
       <label for="neighborhoods-select">
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" tabindex="-1">
           <option selected="selected" value="all">All Neighborhoods</option>
         </select>
       </label>
@@ -34,10 +36,11 @@
     <section class="restaurants-list" aria-label="Restaurant List">
       <ul id="restaurants-list"></ul>
     </section>
+    <footer id="footer">
+      Copyright (c) 2018 <a href="/">Restaurant Reviews</a> All Rights Reserved.
+    </footer>
   </main>
-  <footer id="footer">
-    Copyright (c) 2018 <a href="/">Restaurant Reviews</a> All Rights Reserved.
-  </footer>
+  </div>
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv3MsfMQwOVWAjvt4B9gFKJCm_Ql6xNfE&libraries=places&callback=initMap"></script>

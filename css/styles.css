@@ -15,7 +15,7 @@
 * {
   box-sizing: border-box;
 }
-body {
+html, body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1;
@@ -24,16 +24,21 @@ body {
   color: var(--color-black);
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+}
+body {
+  min-height: 100%;
 }
 ul, 
 li {
-	color: var( --text-color-alt1);
+  color: var( --text-color-alt1);
 }
 a,
 a:hover,
 a:focus {
   color: var(--color-green);
-	text-decoration: none;
+  text-decoration: none;
 }
 *:focus {
   outline: 2px solid var(--color-green);
@@ -43,13 +48,29 @@ a:focus {
   color: var(--color-white);
 }
 img{
-	border: 0;
+  border: 0;
 }
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 }
 #maincontent {
-  padding-top: calc(var(--spacing-unit)*8.75);
+  padding-top: calc(var(--spacing-unit)*0.25);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+  z-index: 98;
 }
 #footer {
   background-color: var(--bg-color-gray);
@@ -58,23 +79,46 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   letter-spacing: 1px;
   padding: calc(var(--spacing-unit)*2);
 }
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: var(--spacing-unit);
+  z-index: 200;
+ }
+ .skip-link:focus {
+  top: 0;
+ }
 /* ====================== Navigation ====================== */
 .header {
-  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
   width: 100%;
   z-index: 100;
-}
-h1 {
-  padding: calc(var(--spacing-unit)*2) 0;
-  margin: 0;
-  background-color: var(--bg-color-green);
-  text-align: center;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-  max-height: calc(var(--spacing-unit)*8.75);
+  min-height: calc(var(--spacing-unit)*8.75);
+  max-height: 1000px;
   transition-duration: .2s;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition-property: max-height,box-shadow;
   opacity: 0.9;
+}
+h1 {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  align-self: stretch;
+  align-items: center;
+  height: calc(var(--spacing-unit)*8.75);
+  padding: calc(var(--spacing-unit)*2) 0;
+  background-color: var(--bg-color-green);
+  margin: 0;
 }
 h1 a {
   font-weight: 400;
@@ -106,8 +150,8 @@ h1 a:focus {
 }
 /* Add a slash symbol (/) before/behind each list item */
 #breadcrumb li+li:before {
-    padding: 0 calc(var(--spacing-unit)*0.5) 0 var(--spacing-unit);
-    content: "/\00a0";
+  padding: 0 calc(var(--spacing-unit)*0.5) 0 var(--spacing-unit);
+  content: "/\00a0";
 }
 /* ====================== Map ====================== */
 #map {
@@ -118,9 +162,6 @@ h1 a:focus {
 .filter-options {
   width: 100%;
   background-color: var(--bg-color-green);
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
   padding: var(--spacing-unit);
 }
 .filter-options h2 {
@@ -193,9 +234,6 @@ select {
   cursor: pointer;
 }
 /* ====================== Restaurant Details ====================== */
-.inside #maincontent {
-  padding-top: calc(var(--spacing-unit)*15.75);
-}
 #restaurant-name {
   font-size: 1.875rem;
   font-weight: 300;
@@ -229,12 +267,6 @@ select {
 }
 .dow div+div {
   margin-left: calc(var(--spacing-unit)*0.75);
-}
-#restaurant-container,
-#reviews-container {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
 }
 #reviews-container {
   margin-bottom: calc(var(--spacing-unit)*3);
@@ -286,33 +318,23 @@ select {
 .rating {
   color: var(--color-green-alt);
 }
-/* Mobile (screen size 640px and below) */
-/* Below is a special case for mobile screen size 460px and above */
-@media(min-width: 460px) {
-  .filter-options {
-    justify-content: center;
-  }
-}
 /* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {
   h1 a {
     font-size: 3rem;
   }
   h1 {
-    max-height: calc(var(--spacing-unit)*11);
+    height: calc(var(--spacing-unit)*11);
   }
-  #maincontent {
-    padding-top: calc(var(--spacing-unit)*11);
-  }
-  .inside #maincontent {
-    padding-top: calc(var(--spacing-unit)*18);
+  header {
+    min-height: calc(var(--spacing-unit)*11);
   }
   .filter-options h2 {
-    display: flex;
+    display: inline-block;
     align-self: center;
     color: var(--color-white);
     font-size: 1.2rem;
-    line-height: 1;
+    line-height: 2.75;
     font-weight: normal;
     font-style: italic;
     margin: 0;
@@ -329,4 +351,4 @@ select {
   #reviews-list {
     width: 60vw;
   }
-]
+}

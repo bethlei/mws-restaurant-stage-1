@@ -37,7 +37,7 @@ li {
 a,
 a:hover,
 a:focus {
-  color: var(--color-green);
+  color: var(--bg-color-green);
   text-decoration: none;
 }
 *:focus {
@@ -74,7 +74,7 @@ header, nav, section, footer {
 }
 #footer {
   background-color: var(--bg-color-gray);
-  color: var(--text-color-alt2);
+  color: var(--text-color-alt1);
   font-weight: 300;
   letter-spacing: 1px;
   padding: calc(var(--spacing-unit)*2);

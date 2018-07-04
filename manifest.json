@@ -1,0 +1,15 @@
+{
+    "name": "Restaurant Reviews App for Udacity's Mobile Web Specialist NanoDegree",
+    "short_name": "RestaurantReviews",
+    "icons": [
+      { "src": "icon/launcher-icon-1x.png", "type": "image/png", "sizes": "48x48" },
+      { "src": "icon/launcher-icon-2x.png", "type": "image/png", "sizes": "96x96" },
+      { "src": "icon/launcher-icon-4x.png", "type": "image/png", "sizes": "192x192" },
+      { "src": "icon/launcher-icon-10x.png", "type": "image/png", "sizes": "512x512" },
+      { "src": "favicon.ico", "type": "image/png", "sizes": "64x64" }
+    ],
+    "theme_color": "#2e7c31",
+    "background_color": "#2e7c31",
+    "display": "fullscreen",
+    "start_url": "/index.html"
+  }

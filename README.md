@@ -9,10 +9,9 @@ In **Stage Two**, you will take the responsive, accessible design you built in *
 ## To get started
 
 * Install and start the Node API server
-    - Follow the READMME on Udacity's [mws-restaurant-stage-2](https://github.com/udacity/mws-restaurant-stage-2) to spin up the server
+    - Follow the README on Udacity's [mws-restaurant-stage-2](https://github.com/udacity/mws-restaurant-stage-2) to spin up the API server
 * Install and start the app
-    - `npm install`
-    - `python3 -m http.server 8000` (Python 3) or `python -m SimpleHTTPServer 8000` (Python 2)
+    - Spin up the app with `python3 -m http.server 8000` for Python 3 or `python -m SimpleHTTPServer 8000` for Python 2
     - Visit the site at `http://localhost:8000`
 
 ## Project Overview: Stage 1

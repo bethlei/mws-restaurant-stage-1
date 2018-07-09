@@ -2,6 +2,19 @@
 ---
 #### _Three Stage Course Material Project - Restaurant Reviews_
 
+## Project Overview: Stage 2
+
+In **Stage Two**, you will take the responsive, accessible design you built in **Stage One** and connect it to an external server. You’ll begin by using asynchronous JavaScript to request JSON data from the server. You’ll store data received from the server in an offline database using IndexedDB, which will create an app shell architecture. Finally, you’ll work to optimize your site to meet performance benchmarks, which you’ll test using [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+
+## To get started
+
+* Install and start the Node API server
+    - Follow the READMME on Udacity's [mws-restaurant-stage-2](https://github.com/udacity/mws-restaurant-stage-2) to spin up the server
+* Install and start the app
+    - `npm install`
+    - `python3 -m http.server 8000` (Python 3) or `python -m SimpleHTTPServer 8000` (Python 2)
+    - Visit the site at `http://localhost:8000`
+
 ## Project Overview: Stage 1
 
 For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.

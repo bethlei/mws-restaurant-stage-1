@@ -1,3 +1,19 @@
+const dbPromise = idb.open('restaurantDb', 1 , function(upgradeDB){
+  if(!upgradeDB.objectStoreNames.contains('restaurantStore')){
+    upgradeDB.createObjectStore('restaurantStore', {keyPath : 'id'});
+  }
+});
+
+function saveRestaurants(restaurant, data) {
+  return dbPromise
+    .then(db => {
+      const tx = db.transaction(restaurant, 'readwrite');
+      const store = tx.objectStore(restaurant);
+      store.put(data);
+      return tx.complete;
+    });
+}
+
 /**
  * Common database helper functions.
  */
@@ -12,25 +28,37 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  /**
+   * Fetch all restaurants.
+   */
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATABASE_URL)
-      .then(response => {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-            response.status)
-          return
-        }
-
-        response.json().then(restaurants => {
-          console.log('restaurants', restaurants)
-          callback(null, restaurants);
-        })
-      })
-      .catch(err => {
-        console.log('Fetch Error', err)
-        callback(`Fetch Error ${err}`, null) 
+    return dbPromise.then(db => {
+      const tx = db.transaction('restaurantStore','readonly');
+      const store = tx.objectStore('restaurantStore');
+      return store.getAll();
+    }).then(restaurants => {
+      if(restaurants && restaurants.length) {
+        console.log('Data fetched from IndexedDB')
+        return Promise.resolve(restaurants);
+      } else {
+        console.log('Data fetched from Node server')
+        return fetch(DBHelper.DATABASE_URL).then(response => {
+          return response.json();
+        }).then(restaurants => {
+            for (var key in restaurants) {
+              saveRestaurants('restaurantStore', restaurants[key]);
+            }
+            return restaurants;
+          })
       }
-  )}
+    })
+    .then(restaurants => {
+      callback(null, restaurants)
+    })
+    .catch(err => {
+      callback(`Fetch Error ${err}`, null) 
+    })
+  }
 
   /**
    * Fetch a restaurant by its ID.

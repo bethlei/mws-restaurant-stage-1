@@ -11,5 +11,5 @@
     "theme_color": "#2e7c31",
     "background_color": "#2e7c31",
     "display": "fullscreen",
-    "start_url": "/index.html"
+    "start_url": "index.html"
   }

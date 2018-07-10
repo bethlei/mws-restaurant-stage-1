@@ -14,7 +14,8 @@ self.addEventListener('install', (event) => {
           '/js/dbhelper.js',
           '/js/main.js',
           '/js/restaurant_info.js',
-          '/sw.js'
+          '/sw.js',
+          '/img/noimage.gif'
         ]);
       })
   );
@@ -54,14 +55,18 @@ self.addEventListener('activate', (event) => {
 function serveImage(request) {
   var storageUrl = request.url.replace(/-\d+px\.jpg$/, '');
 
-  return caches.open(contentImgsCache).then(function(cache) {
-    return cache.match(storageUrl).then(function(response) {
+  if (storageUrl.includes('/undefined_')) {
+    return caches.match('/img/noimage.gif');
+  }
+
+  return caches.open(contentImgsCache).then((cache) => {
+    return cache.match(storageUrl).then((response) => {
       if (response) return response;
 
-      return fetch(request).then(function(networkResponse) {
+      return fetch(request).then((networkResponse) => {
         cache.put(storageUrl, networkResponse.clone());
         return networkResponse;
-      });
+      })
     });
   });
 }

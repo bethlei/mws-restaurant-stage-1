@@ -21,6 +21,19 @@ self.addEventListener('install', (event) => {
   );
 });
 
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((cacheNames) => {
+        Promise.all(
+          cacheNames.filter((cacheName) => {
+            return cacheName !== staticCacheName && cacheName !== contentImgsCache;
+          }).map((cacheName) => caches.delete(cacheName))
+        )
+      })
+  );
+});
+
 self.addEventListener('fetch', (event) => {
   var requestUrl = new URL(event.request.url);
 
@@ -35,19 +48,6 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request)
       .then((response) => {
         return response || fetch(event.request);
-      })
-  );
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
-        Promise.all(
-          cacheNames.filter((cacheName) => {
-            return cacheName.startsWith('restaurant-') && cacheName !== staticCacheName && cacheName !== contentImgsCache;
-          }).map((cacheName) => caches.delete(cacheName))
-        )
       })
   );
 });

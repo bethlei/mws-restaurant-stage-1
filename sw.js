@@ -15,7 +15,8 @@ self.addEventListener('install', (event) => {
           '/js/main.js',
           '/js/restaurant_info.js',
           '/sw.js',
-          '/img/noimage.gif'
+          '/img/undefined_1x.jpg',
+          '/img/undefined_2x.jpg'
         ]);
       })
   );
@@ -56,7 +57,7 @@ function serveImage(request) {
   var storageUrl = request.url.replace(/-\d+px\.jpg$/, '');
 
   if (storageUrl.includes('/undefined_')) {
-    return caches.match('/img/noimage.gif');
+    return caches.match(storageUrl.slice(-21));
   }
 
   return caches.open(contentImgsCache).then((cache) => {

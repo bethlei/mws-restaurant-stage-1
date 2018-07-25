@@ -148,7 +148,7 @@ h1 a:focus {
   font-style: italic;
 }
 /* Add a slash symbol (/) before/behind each list item */
-#breadcrumb li+li:before {
+#breadcrumb li+li::before {
   padding: 0 calc(var(--spacing-unit)*0.5) 0 var(--spacing-unit);
   content: "/\00a0";
 }
@@ -163,7 +163,8 @@ h1 a:focus {
   background-color: var(--bg-color-green);
   padding: var(--spacing-unit);
 }
-.filter-options h2 {
+.filter-options h2,
+.filter-options h2::before {
   display: none;
 }
 select {
@@ -200,6 +201,7 @@ select {
   width: 320px;
   border-radius: 2px;
   box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+  position: relative;
 }
 #restaurants-list .restaurant-img {
   display: block;
@@ -213,6 +215,32 @@ select {
   font-weight: 300;
   line-height: normal;
   margin: calc(var(--spacing-unit)*3) 0 var(--spacing-unit);
+}
+h2.fave::before,
+h2.unfave::after {
+  position: absolute;
+  right: calc(var(--spacing-unit)*3);
+  top: calc(var(--spacing-unit)*4);
+  width: calc(var(--spacing-unit)*5.25);
+  height: calc(var(--spacing-unit)*5.25);
+  content: "";
+  border-radius: 50%;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+h2.fave::before {
+  background-image: url(/icon/favorite.svg);
+}
+h2.unfave::after {
+  background-image: url(/icon/unfavorite.svg);
+}
+h2:focus {
+  outline: 2px solid var(--color-white);
+}
+h2::selection {
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 #restaurants-list p {
   margin: 0;
@@ -236,12 +264,23 @@ select {
 #restaurant-name {
   font-size: 1.875rem;
   font-weight: 300;
-  margin: calc(var(--spacing-unit)*4) 0 calc(var(--spacing-unit)*2);
+  margin: calc(var(--spacing-unit)*4) auto calc(var(--spacing-unit)*2);
+  position: relative;
+  max-width: 800px;
 }
 #restaurant-img {
   width: 100%;
   max-width: 800px;
   align-self: center;
+}
+h2#restaurant-name::before,
+h2#restaurant-name::after {
+  right: calc(var(--spacing-unit)*2);
+  top: calc(var(--spacing-unit)*7);
+  width: calc(var(--spacing-unit)*7);
+  height: calc(var(--spacing-unit)*7);
+  background-size: calc(var(--spacing-unit)*7);
+  cursor: pointer;
 }
 #restaurant-cuisine {
   margin: calc(var(--spacing-unit)*2) 0 0;
@@ -338,12 +377,14 @@ select {
   select {
     margin: calc(var(--spacing-unit)*2) 0 calc(var(--spacing-unit)*2) calc(var(--spacing-unit)*2);
   }
+  #restaurant-container,
   #reviews-list {
     margin: 0 auto;
     width: 80vw;
   }
 }
 @media(min-width: 1025px) {
+  #restaurant-container,
   #reviews-list {
     width: 60vw;
   }

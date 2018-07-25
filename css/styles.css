@@ -315,6 +315,9 @@ h2#restaurant-name::after {
   color: var(--text-color-alt1);
   margin: calc(var(--spacing-unit)*4) 0 0;
 }
+#reviews-container > p {
+  color: var(--text-color-alt2);
+}
 #reviews-list {
   display: flex;
   flex-flow: column nowrap;
@@ -355,6 +358,25 @@ h2#restaurant-name::after {
 }
 .rating {
   color: var(--color-green-alt);
+}
+#add-review-container {
+  position: fixed;
+  right: calc(var(--spacing-unit)*4);
+  bottom: calc(var(--spacing-unit)*6.5);
+}
+.add-review-icon .add-review {
+  display: block;
+  width: calc(var(--spacing-unit)*7);
+  height: calc(var(--spacing-unit)*7);
+  border-radius: 50%;
+  background: var(--bg-color-green);
+  background-image: url(/icon/add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(var(--spacing-unit)*3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+  cursor: pointer;
 }
 /* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {

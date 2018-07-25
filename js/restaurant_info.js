@@ -49,8 +49,28 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const name = document.getElementById('restaurant-name');
+  const name = document.getElementById('restaurant-name')
+  const fave = `Click to Fave ${restaurant.name}`
+  const unfave = `Click to Unfave ${restaurant.name}`
   name.innerHTML = restaurant.name;
+  if (restaurant.is_favorite === true) {
+    name.className = 'fave'
+    name.setAttribute('title', unfave)
+  } else {
+    name.className = 'unfave'
+    name.setAttribute('title', fave)
+  }
+  name.onclick = function() {
+    if (name.classList.contains('unfave')) {
+      name.classList.remove('unfave')
+      name.classList.add('fave')
+      name.setAttribute('title', unfave)
+    } else if (name.classList.contains('fave')) {
+      name.classList.remove('fave')
+      name.classList.add('unfave')
+      name.setAttribute('title', fave)
+    }
+  }
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;

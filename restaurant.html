@@ -42,12 +42,38 @@
       <menu class="add-review-icon"><button id="add-review" type="button" class="add-review" title="Add Review" aria-label="Add Review">Add New Review</button></menu>
     </section>
     <dialog id="review-dialog">
-      <form method="dialog">
-        <section>
-        </section>
-        <menu>
-          <button id="cancel-review" type="reset">Cancel</button>
-          <button id="submit-review" type="submit">Submit Review</button>
+      <form method="dialog" class="form">
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Add Review</legend>
+          <div class="form-element-wrapper">
+            <input type="text" id="review-username" class="form-element" placeholder=" " required>
+            <div class="form-element-line"></div>
+            <label for="review-username" class="form-element-label">Name</label>
+            <div class="form-element-helpertext">Required</div>
+          </div>
+          <div class="form-element-wrapper form-select">
+            <select id="review-rating" class="form-element" required>
+              <option disabled selected value="" class="form-select-placeholder"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div class="form-element-line"></div>
+            <label for="review-rating" class="form-element-label">Rating</label>
+            <div class="form-element-helpertext">Required</div>
+          </div>
+          <div class="form-element-wrapper">
+            <textarea id="review-comment" class="form-element" placeholder=" " required></textarea>
+            <div class="form-element-line"></div>
+            <label for="review-comment" class="form-element-label">Comment</label>
+            <div class="form-element-helpertext">Required</div>
+          </div>
+        </fieldset>
+        <menu class="form-menu">
+          <button id="cancel-review" type="reset" class="form-button-cancel">Cancel</button>
+          <button id="submit-review" type="submit" class="form-button">Submit Review</button>
         </menu>
       </form>
     </dialog>

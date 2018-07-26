@@ -82,6 +82,14 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     reviewDialog.close()
   }
 
+  const ratingSelect = document.getElementById('review-rating')
+  ratingSelect.onchange = function(event) {
+    let elem = event.target
+    if (elem && elem.matches(".form-element")) {
+      elem.classList[elem.value ? "add" : "remove"]("-hasvalue");
+    }
+  }
+
   const address = document.getElementById('restaurant-address')
   address.innerHTML = restaurant.address
 

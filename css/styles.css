@@ -3,6 +3,8 @@
 :root {
   --color-black: #000;
   --color-white: #fff;
+  --color-purple: #800080;
+  --color-red: #e22c29;
   --color-green: #6ab344;
   --color-green-alt: #006800;
   --text-color-alt1: rgba(0,0,0,0.87);
@@ -225,7 +227,7 @@ h2.unfave::after {
   height: calc(var(--spacing-unit)*5.25);
   content: "";
   border-radius: 50%;
-  background: transparent;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -248,7 +250,9 @@ h2::selection {
   font-size: 0.9rem;
   font-style: italic;
 }
-#restaurants-list li button {
+#restaurants-list li button,
+.form-button,
+.form-button-cancel {
   background-color: var(--color-green-alt);
   border: 0;
   font-family: 'Roboto', sans-serif;
@@ -369,7 +373,7 @@ h2#restaurant-name::after {
   width: calc(var(--spacing-unit)*7);
   height: calc(var(--spacing-unit)*7);
   border-radius: 50%;
-  background: var(--bg-color-green);
+  background-color: var(--bg-color-green);
   background-image: url(/icon/add.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -377,6 +381,177 @@ h2#restaurant-name::after {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
   cursor: pointer;
+}
+#review-dialog::backdrop {
+  background: rgba(0,0,0,0.58);
+}
+#review-dialog {
+  border-radius: calc(var(--spacing-unit)*0.25);
+  background-color: var(--color-white);
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+  transition: all 0.56s cubic-bezier(0.25, 0.8, 0.25, 1);
+  max-width: 860px;
+  min-height: calc(100vh - 280px);
+  width: 100%;
+  border: 0;
+  padding: 0;
+}
+.form {
+  padding: 0;
+  margin: 0;
+}
+.form-fieldset {
+  padding: 0;
+  margin: 0 auto;
+  border: 0;
+  width: 80%;
+}
+.form-legend {
+  padding: calc(var(--spacing-unit)*5) 0;
+  margin: 0 auto;
+  font-size: 2.875rem;
+  font-weight: 300;
+  color: var(--bg-color-green);
+  text-align: center;
+}
+.form-element-wrapper {
+  position: relative;
+  margin-bottom: calc(var(--spacing-unit)*4);
+}
+.form-element {
+  outline: 0;
+  width: 100%;
+  height: calc(var(--spacing-unit)*3);
+  display: block;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-color-alt1);
+  box-shadow: none;
+  border: 0;
+  opacity: 0.001;
+  transition: opacity 0.28s ease;
+  will-change: opacity;
+}
+.form-element-line {
+  display: block;
+  position: relative;
+  height: calc(var(--spacing-unit)*0.125);
+  background-color: var(--text-color-alt1);
+}
+.form-element-line::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-color-green);
+  height: calc(var(--spacing-unit)*0.25);
+  display: block;
+  transform: rotateY(90deg);
+  transition: transform 0.28s ease;
+  will-change: transform;
+}
+.form-element-label {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: calc(var(--spacing-unit)*1.5);
+  line-height: 1.5rem;
+  pointer-events: none;
+  z-index: 1;
+  font-size: 1rem;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: var(--text-color-alt2);
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition: transform 0.28s ease, color 0.28s linear, opacity 0.28s linear;
+  will-change: transform, color, opacity;
+}
+.form-element:focus ~ .form-element-line::after {
+  transform: rotateY(0deg);
+}
+.form-element:focus ~ .form-element-label {
+  color: var(--bg-color-green);
+}
+.form-element.-hasvalue,
+.form-element:focus {
+  opacity: 1;
+}
+.form-element.-hasvalue ~ .form-element-label,
+.form-element:focus ~ .form-element-label {
+  transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.75);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.form-element-helpertext {
+  font-weight: 400;
+  font-size: 0.6875rem;
+  color: var(--color-red);
+  text-align: left;
+  padding-top: calc(var(--spacing-unit)*0.5);
+  display: none;
+}
+.form-element::placeholder {
+  color: var(--text-color-alt2);
+  transform: scale(0.75);
+  transform-origin: left top;
+}
+input.form-element:not(:placeholder-shown),
+textarea.form-element:not(:placeholder-shown) {
+  opacity: 1;
+}
+input.form-element:not(:placeholder-shown) ~ .form-element-label,
+textarea.form-element:not(:placeholder-shown) ~ .form-element-label {
+  transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.75);
+  cursor: pointer;
+  pointer-events: auto;
+}
+textarea.form-element {
+  height: auto;
+  min-height: calc(var(--spacing-unit)*6);
+}
+select.form-element {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.form-select-placeholder {
+  color: var(--text-color-alt2);
+  display: none;
+}
+.form-select .form-element-line::before {
+  content: "";
+  position: absolute;
+  height: var(--spacing-unit);
+  width: var(--spacing-unit);
+  border-bottom: 1px solid var(--text-color-alt2);
+  border-right: 1px solid var(--text-color-alt2);
+  display: block;
+  right: var(--spacing-unit);
+  bottom: 0;
+  transition: transform 0.28s ease;
+  transform: translateY(-100%) rotateX(0deg) rotate(45deg);
+  will-change: transform;
+}
+.form-select select:focus ~ .form-element-line::before {
+  transform: translateY(-50%) rotateX(180deg) rotate(45deg);
+}
+.form-menu {
+  margin: 0;
+  padding: 0;
+}
+.form-button-cancel {
+  background-color: var(--color-purple);
+}
+.form-button-cancel + .form-button {
+  margin-left: var(--spacing-unit);
 }
 /* Tablet breakpoint (641px and beyond) */
 @media(min-width: 641px) {

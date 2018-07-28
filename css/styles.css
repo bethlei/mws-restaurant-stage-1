@@ -427,7 +427,7 @@ h2#restaurant-name::after {
   padding: 0;
   margin: 0;
   font-size: 1rem;
-  color: var(--text-color-alt1);
+  color: var(--color-black);
   box-shadow: none;
   border: 0;
   opacity: 0.001;
@@ -495,7 +495,6 @@ h2#restaurant-name::after {
   color: var(--color-red);
   text-align: left;
   padding-top: calc(var(--spacing-unit)*0.5);
-  display: none;
 }
 .form-element::placeholder {
   color: var(--text-color-alt2);

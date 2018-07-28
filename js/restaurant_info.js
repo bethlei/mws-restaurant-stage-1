@@ -53,6 +53,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const fave = `Click to Fave ${restaurant.name}`
   const unfave = `Click to Unfave ${restaurant.name}`
   name.innerHTML = restaurant.name
+  name.setAttribute('role', "button")
+  name.setAttribute('aria-label', 'Click or unclick favorite icon')
   if (restaurant.is_favorite === true) {
     name.className = 'fave'
     name.setAttribute('title', unfave)

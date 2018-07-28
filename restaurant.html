@@ -41,18 +41,18 @@
     <section id="add-review-container" aria-label="Add New Review">
       <menu class="add-review-icon"><button id="add-review" type="button" class="add-review" title="Add Review" aria-label="Add Review">Add New Review</button></menu>
     </section>
-    <dialog id="review-dialog">
+    <dialog id="review-dialog" role="form" aria-live="assertive" aria-atomic="true">
       <form method="dialog" class="form">
         <fieldset class="form-fieldset">
           <legend class="form-legend">Add Review</legend>
           <div class="form-element-wrapper">
-            <input type="text" id="review-username" class="form-element" placeholder=" " required>
+            <input type="text" id="review-username" class="form-element" placeholder=" " required aria-required="true">
             <div class="form-element-line"></div>
             <label for="review-username" class="form-element-label">Name</label>
-            <div class="form-element-helpertext">Required</div>
+            <div class="form-element-helpertext"></div>
           </div>
           <div class="form-element-wrapper form-select">
-            <select id="review-rating" class="form-element" required>
+            <select id="review-rating" class="form-element" required aria-required="true">
               <option disabled selected value="" class="form-select-placeholder"></option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -62,18 +62,18 @@
             </select>
             <div class="form-element-line"></div>
             <label for="review-rating" class="form-element-label">Rating</label>
-            <div class="form-element-helpertext">Required</div>
+            <div class="form-element-helpertext"></div>
           </div>
           <div class="form-element-wrapper">
-            <textarea id="review-comment" class="form-element" placeholder=" " required></textarea>
+            <textarea id="review-comment" class="form-element" placeholder=" " required aria-required="true"></textarea>
             <div class="form-element-line"></div>
             <label for="review-comment" class="form-element-label">Comment</label>
-            <div class="form-element-helpertext">Required</div>
+            <div class="form-element-helpertext"></div>
           </div>
         </fieldset>
         <menu class="form-menu">
-          <button id="cancel-review" type="reset" class="form-button-cancel">Cancel</button>
-          <button id="submit-review" type="submit" class="form-button">Submit Review</button>
+          <button id="cancel-review" type="reset" class="form-button-cancel" aria-label="Reset form">Cancel</button>
+          <button id="submit-review" type="submit" class="form-button" aria-label="Submit add review form">Submit Review</button>
         </menu>
       </form>
     </dialog>

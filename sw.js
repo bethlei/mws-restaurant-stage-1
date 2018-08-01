@@ -16,7 +16,9 @@ self.addEventListener('install', (event) => {
           '/js/restaurant_info.js',
           '/sw.js',
           '/img/undefined_1x.jpg',
-          '/img/undefined_2x.jpg'
+          '/img/undefined_2x.jpg',
+          '/icon/favorite.svg',
+          '/icon/unfavorite.svg'
         ]);
       })
   );

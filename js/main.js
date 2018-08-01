@@ -150,7 +150,7 @@ createRestaurantHTML = (restaurant) => {
 
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
-  if (restaurant.is_favorite === true) {
+  if (restaurant.is_favorite === 'true') {
     name.className = 'fave'
   }
   li.append(name);

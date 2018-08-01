@@ -52,26 +52,31 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name')
   const fave = `Click to Fave ${restaurant.name}`
   const unfave = `Click to Unfave ${restaurant.name}`
+  const favoriteState = restaurant.is_favorite
+  let isFavorite = (favoriteState && favoriteState === 'true' ? true : false)
   name.innerHTML = restaurant.name
   name.setAttribute('role', "button")
   name.setAttribute('aria-label', 'Click or unclick favorite icon')
-  if (restaurant.is_favorite === true) {
+  if (favoriteState === "true") {
     name.className = 'fave'
     name.setAttribute('title', unfave)
   } else {
     name.className = 'unfave'
     name.setAttribute('title', fave)
   }
-  name.onclick = function() {
+  name.onclick = event => {
     if (name.classList.contains('unfave')) {
       name.classList.remove('unfave')
       name.classList.add('fave')
       name.setAttribute('title', unfave)
+      isFavorite = false
     } else if (name.classList.contains('fave')) {
       name.classList.remove('fave')
       name.classList.add('unfave')
       name.setAttribute('title', fave)
+      isFavorite = true
     }
+    DBHelper.updateRestaurantFavoriteById(restaurant.id, isFavorite)
   }
 
   const addReviewBtn = document.getElementById('add-review')

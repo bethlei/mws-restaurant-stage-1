@@ -106,7 +106,6 @@ class DBHelper {
       const restaurantIndex = store.index('restaurant_id')
       return restaurantIndex.getAll(id)
     }).then(reviews => {
-      console.log('reviews1', reviews)
       if(reviews && reviews.length) {
         console.log('Reviews fetched from IndexedDB')
         return Promise.resolve(reviews)
@@ -128,6 +127,20 @@ class DBHelper {
     })
     .catch(err => {
       callback(`Fetch Error ${err}`, null) 
+    })
+  }
+
+  static updateRestaurantFavoriteById(id, favoriteState) {
+    const isFavorite = !favoriteState
+    const FaveUpdateUrl = DBHelper.DATABASE_URL + "/" + id + "/?is_favorite=" + isFavorite
+    return fetch(FaveUpdateUrl, { method: 'PUT' }).then(response => response.json()).then(restaurant => {
+      console.log('restaurant', restaurant)
+      dbPromise.then(db => {
+        const tx = db.transaction('restaurantStore', 'readwrite')
+        const store = tx.objectStore('restaurantStore')
+        store.put(restaurant)
+        console.log('success')
+      })
     })
   }
 

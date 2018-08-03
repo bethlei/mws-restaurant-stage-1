@@ -80,17 +80,30 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
 
   const addReviewBtn = document.getElementById('add-review')
+  const submitReviewBtn = document.getElementById('submit-review')
   const cancelReviewBtn = document.getElementById('cancel-review')
   const reviewDialog = document.getElementById('review-dialog')
-  addReviewBtn.onclick = function() {
+  addReviewBtn.onclick = () => {
     reviewDialog.showModal()
   }
-  cancelReviewBtn.onclick = function() {
+  cancelReviewBtn.onclick = () => {
     reviewDialog.close()
+  }
+  submitReviewBtn.onclick = event => {
+    const name = document.getElementById('review-username').value
+    const rating = document.getElementById('review-rating').value
+    const comments = document.getElementById('review-comment').value
+    DBHelper.addReview({
+      restaurant_id: restaurant.id,
+      name: name,
+      rating: rating,
+      comments: comments,
+      createdAt: Date.now()
+    })
   }
 
   const ratingSelect = document.getElementById('review-rating')
-  ratingSelect.onchange = function(event) {
+  ratingSelect.onchange = event => {
     let elem = event.target
     if (elem && elem.matches(".form-element")) {
       elem.classList[elem.value ? "add" : "remove"]("-hasvalue");

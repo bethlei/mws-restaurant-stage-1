@@ -98,6 +98,9 @@ class DBHelper {
     })
   }
 
+  /**
+   * Fetch all reviews for a restaurant
+   */
   static fetchRestaurantReviewsById(id, callback) {
     // fetch all reviews for a restaurant
     return dbPromise.then(db => {
@@ -130,16 +133,36 @@ class DBHelper {
     })
   }
 
+  /**
+   * Update favorite restaurant toggle
+   */
   static updateRestaurantFavoriteById(id, favoriteState) {
     const isFavorite = !favoriteState
     const FaveUpdateUrl = DBHelper.DATABASE_URL + "/" + id + "/?is_favorite=" + isFavorite
     return fetch(FaveUpdateUrl, { method: 'PUT' }).then(response => response.json()).then(restaurant => {
-      console.log('restaurant', restaurant)
       dbPromise.then(db => {
         const tx = db.transaction('restaurantStore', 'readwrite')
         const store = tx.objectStore('restaurantStore')
         store.put(restaurant)
-        console.log('success')
+      })
+    })
+  }
+
+  /**
+   * Add a review to a restaurant
+   */
+  static addReview(data) {
+    const reviewUrl = DBHelper.DATABASE_REVIEWS_URL
+    return fetch(reviewUrl, { 
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(response =>
+      response.json()
+      ).then(review => {
+        dbPromise.then(db => {
+        const tx = db.transaction('reviewStore', 'readwrite')
+        const store = tx.objectStore('reviewStore')
+        store.put(review)
       })
     })
   }

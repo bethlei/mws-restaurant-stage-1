@@ -164,6 +164,7 @@ class DBHelper {
         const store = tx.objectStore('reviewStore')
         store.put(review)
       })
+      DBHelper.fetchRestaurantReviewsById(review.restaurant_id, fillReviewsHTML)
     })
   }
 

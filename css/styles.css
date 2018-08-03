@@ -264,6 +264,10 @@ h2::selection {
   text-transform: uppercase;
   cursor: pointer;
 }
+.form-button,
+.form-button-cancel {
+  margin: 0 0 calc(var(--spacing-unit)*8);
+}
 /* ====================== Restaurant Details ====================== */
 #restaurant-name {
   font-size: 1.875rem;
@@ -577,6 +581,10 @@ select.form-element {
   #reviews-list {
     margin: 0 auto;
     width: 80vw;
+  }
+  .form-button,
+  .form-button-cancel {
+    margin: calc(var(--spacing-unit)*3) 0 0;
   }
 }
 @media(min-width: 1025px) {

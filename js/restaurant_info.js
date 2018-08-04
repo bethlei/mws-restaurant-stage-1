@@ -180,6 +180,9 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (error, reviews) => {
   self.restaurant.reviews = reviews
+  reviews.sort(function(a,b) { 
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
+  })
   const container = document.getElementById('reviews-container')
   const title = document.createElement('h3')
   title.innerHTML = 'Reviews'

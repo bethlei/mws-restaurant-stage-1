@@ -115,6 +115,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
         comments: comments,
         createdAt: Date.now()
       })
+      reviewDialog.close()
+      document.getElementById('add-review-restaurant').reset()
     } else {
       // use html5 form validation to prevent submitting a review when there is a field that's not filled out.
       console.log('Prevent form submission when one of the form fields is empty')

@@ -93,13 +93,32 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     const name = document.getElementById('review-username').value
     const rating = document.getElementById('review-rating').value
     const comments = document.getElementById('review-comment').value
-    DBHelper.addReview({
-      restaurant_id: restaurant.id,
-      name: name,
-      rating: rating,
-      comments: comments,
-      createdAt: Date.now()
-    })
+    const emptyField = []
+
+    if (name.trim() === '') {
+      emptyField.push('name')
+    }
+
+    if (rating.trim() === '') {
+      emptyField.push('rating')
+    }
+
+    if (comments.trim() === '') {
+      emptyField.push('comments')
+    }
+
+    if (emptyField.length === 0) {
+      DBHelper.addReview({
+        restaurant_id: restaurant.id,
+        name: name,
+        rating: rating,
+        comments: comments,
+        createdAt: Date.now()
+      })
+    } else {
+      // use html5 form validation to prevent submitting a review when there is a field that's not filled out.
+      console.log('Prevent form submission when one of the form fields is empty')
+    }
   }
 
   const ratingSelect = document.getElementById('review-rating')

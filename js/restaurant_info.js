@@ -179,15 +179,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  * Create all reviews HTML and add them to the webpage.
  */
 fillReviewsHTML = (error, reviews) => {
-  self.restaurant.reviews = reviews
-  reviews.sort(function(a,b) { 
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
-  })
   const container = document.getElementById('reviews-container')
-  const title = document.createElement('h3')
-  title.innerHTML = 'Reviews'
-  container.appendChild(title)
-
   if (!reviews) {
     const noReviews = document.createElement('p')
     noReviews.innerHTML = 'No reviews yet!'
@@ -195,7 +187,12 @@ fillReviewsHTML = (error, reviews) => {
     return
   }
   const ul = document.getElementById('reviews-list')
-  reviews.forEach(review => {
+  if (ul.innerHTML !== '') {
+    ul.innerHTML = ''
+  }
+  reviews.sort(function(a,b) { 
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
+  }).forEach(review => {
     ul.appendChild(createReviewHTML(review))
   })
   container.appendChild(ul)

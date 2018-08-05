@@ -297,7 +297,7 @@ h2#restaurant-name::after {
   color: var(--text-color-alt2);
 }
 #restaurant-address {
-  margin:  0 0 calc(var(--spacing-unit)*2);
+  margin: calc(var(--spacing-unit)*0.25) 0 calc(var(--spacing-unit)*2);
   color: var(--text-color-alt1);
 }
 #restaurant-hours {

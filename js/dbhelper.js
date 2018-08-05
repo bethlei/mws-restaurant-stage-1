@@ -1,10 +1,13 @@
-const dbPromise = idb.open('restaurantDb', 2 , function(upgradeDB) {
+const dbPromise = idb.open('restaurantDb', 3 , function(upgradeDB) {
   switch(upgradeDB.oldVersion) {
     case 0:
       upgradeDB.createObjectStore('restaurantStore', {keyPath : 'id'})
     case 1:
       const store = upgradeDB.createObjectStore('reviewStore', {keyPath : 'id'})
       store.createIndex('restaurant_id', 'restaurant_id')
+    case 2:
+      const pRevStore = upgradeDB.createObjectStore('pendingReviewStore', {keyPath : 'id', autoIncrement: true})
+      // pRevStore.createIndex('restaurant_id', 'restaurant_id') 
   }
 })
 
@@ -152,20 +155,36 @@ class DBHelper {
    * Add a review to a restaurant
    */
   static addReview(data) {
-    const reviewUrl = DBHelper.DATABASE_REVIEWS_URL
-    return fetch(reviewUrl, { 
-      method: 'POST',
-      body: JSON.stringify(data)
-    }).then(response =>
-      response.json()
-      ).then(review => {
-        dbPromise.then(db => {
+    const unsynced = []
+    if (navigator.onLine) {
+      const reviewUrl = DBHelper.DATABASE_REVIEWS_URL
+      return fetch(reviewUrl, { 
+        method: 'POST',
+        body: JSON.stringify(data)
+      }).then(response =>
+        response.json()
+        ).then(review => {
+          dbPromise.then(db => {
+          const tx = db.transaction('reviewStore', 'readwrite')
+          const store = tx.objectStore('reviewStore')
+          store.put(review)
+        })
+        DBHelper.fetchRestaurantReviewsById(review.restaurant_id, fillReviewsHTML)
+      })
+    } else {
+      const unsyncedReview = unsynced.push(data)
+      dbPromise.then(db => {
+        const tx = db.transaction('pendingReviewStore', 'readwrite')
+        const store = tx.objectStore('pendingReviewStore')
+        store.put(unsynced[0])
+      })
+      dbPromise.then(db => {
         const tx = db.transaction('reviewStore', 'readwrite')
         const store = tx.objectStore('reviewStore')
-        store.put(review)
+        store.put({id: Date.now(), ...data})
       })
-      DBHelper.fetchRestaurantReviewsById(review.restaurant_id, fillReviewsHTML)
-    })
+      DBHelper.fetchRestaurantReviewsById(data.restaurant_id, fillReviewsHTML)
+    }
   }
 
   /**

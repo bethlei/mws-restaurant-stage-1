@@ -1,13 +1,12 @@
 const dbPromise = idb.open('restaurantDb', 3 , function(upgradeDB) {
   switch(upgradeDB.oldVersion) {
     case 0:
-      upgradeDB.createObjectStore('restaurantStore', {keyPath : 'id'})
+      upgradeDB.createObjectStore('restaurantStore', {keyPath: 'id'})
     case 1:
-      const store = upgradeDB.createObjectStore('reviewStore', {keyPath : 'id'})
-      store.createIndex('restaurant_id', 'restaurant_id')
+      const store = upgradeDB.createObjectStore('reviewStore', {keyPath: 'id'})
+      store.createIndex('restaurant_id', 'restaurant_id', {unique: false})
     case 2:
-      const pRevStore = upgradeDB.createObjectStore('pendingReviewStore', {keyPath : 'id', autoIncrement: true})
-      // pRevStore.createIndex('restaurant_id', 'restaurant_id') 
+      const pRevStore = upgradeDB.createObjectStore('pendingReviewStore', {keyPath: 'id', autoIncrement: true})
   }
 })
 
@@ -176,7 +175,7 @@ class DBHelper {
       dbPromise.then(db => {
         const tx = db.transaction('pendingReviewStore', 'readwrite')
         const store = tx.objectStore('pendingReviewStore')
-        store.put(unsynced[0])
+        store.put({id: Date.now(), ...unsynced[0]})
       })
       dbPromise.then(db => {
         const tx = db.transaction('reviewStore', 'readwrite')

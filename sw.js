@@ -1,3 +1,6 @@
+importScripts('/js/idb.js');
+importScripts('/js/dbhelper.js');
+
 const staticCacheName = 'restaurant-reviews-v2'
 const contentImgsCache = 'restaurant-content-imgs'
 
@@ -73,3 +76,34 @@ function serveImage(request) {
     });
   });
 }
+
+self.addEventListener('sync', (event) => {
+  console.log('sync', event)
+  if (event.tag === 'pending-reviews') {
+    event.waitUntil(dbPromise.then(db => {
+        const tx = db.transaction('pendingReviewStore', 'readonly')
+        const store = tx.objectStore('pendingReviewStore')
+        return store.getAll()
+      }).then(reviews => {
+        const reviewUrl = DBHelper.DATABASE_REVIEWS_URL
+        return Promise.all(reviews.map(review => {
+          return fetch(reviewUrl, {
+            method: 'POST',
+            body: JSON.stringify(review)
+          }).then(response =>
+            response.json()
+          ).then(review => {
+            console.log('POST unsynced review')
+            if (review) {
+              return dbPromise.then(db => {
+                const tx = db.transaction('pendingReviewStore', 'readwrite')
+                const store = tx.objectStore('pendingReviewStore')
+                return store.delete(review.id)
+              })
+            }
+          })
+        })
+      )}).catch(err => console.error(err))
+    )
+  }
+})

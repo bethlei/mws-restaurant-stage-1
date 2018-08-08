@@ -2,9 +2,29 @@
 ---
 #### _Three Stage Course Material Project - Restaurant Reviews_
 
+## Project Overview: Stage 3
+
+In **Stage Three**, you take the connected application you built in **Stage One** and **Stage Two** and add additional functionalities. You add a toggle to enable users to mark a restaurant as a favorite. This toggle is visible in the application. You add a form to enable users to create their reviews. If the app is offline, the form defers updating to the remote database until the connection is back online. Finally, you work to optimize your site to meet even stricter performance benchmarks than Stage Two and test again using [Lighthouse](https://developers.google.com/web/tools/lighthouse/). You need to measure your site performance against the new targets below.
+
+* Progressive Web App score should be at 90 or better.
+* Performance score should be at 90 or better.
+* Accessibility score should be at 90 or better.
+
+## To get started
+
+* Install and start the Node API server
+    - Follow the README on Udacity's [mws-restaurant-stage-3](https://github.com/udacity/mws-restaurant-stage-3) to spin up the API server
+* Install and start the app
+    - Spin up the app with `python3 -m http.server 8000` for Python 3 or `python -m SimpleHTTPServer 8000` for Python 2
+    - Visit the site at `http://localhost:8000`
+
 ## Project Overview: Stage 2
 
-In **Stage Two**, you will take the responsive, accessible design you built in **Stage One** and connect it to an external server. You’ll begin by using asynchronous JavaScript to request JSON data from the server. You’ll store data received from the server in an offline database using IndexedDB, which will create an app shell architecture. Finally, you’ll work to optimize your site to meet performance benchmarks, which you’ll test using [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+In **Stage Two**, you take the responsive, accessible design you built in Stage One and connect it to an external Node server. You begin by using asynchronous JavaScript to request JSON data from the server. You store data received from the server in an offline database using IndexedDB, which create an app shell architecture. Finally, you work to optimize your site to meet performance benchmarks, which you’ll test using [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+
+* Progressive Web App score should be at 90 or better.
+* Performance score should be at 70 or better.
+* Accessibility score should be at 90 or better.
 
 ## To get started
 
@@ -16,7 +36,7 @@ In **Stage Two**, you will take the responsive, accessible design you built in *
 
 ## Project Overview: Stage 1
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+For the **Restaurant Reviews** projects, you incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You also add a service worker to begin the process of creating a seamless offline experience for your users.
 
 ### Specification
 

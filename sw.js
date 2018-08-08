@@ -9,11 +9,12 @@ self.addEventListener('install', (event) => {
     caches.open(staticCacheName)
       .then((cache) => {
         return cache.addAll([
+          '/',
           '/manifest.json',
           '/index.html',
           '/restaurant.html',
           '/css/styles.css',
-          'js/idb.js',
+          '/js/idb.js',
           '/js/dbhelper.js',
           '/js/main.js',
           '/js/restaurant_info.js',
@@ -21,7 +22,10 @@ self.addEventListener('install', (event) => {
           '/img/undefined_1x.jpg',
           '/img/undefined_2x.jpg',
           '/icon/favorite.svg',
-          '/icon/unfavorite.svg'
+          '/icon/unfavorite.svg',
+          '/icon/edit.svg',
+          '/icon/delete.svg',
+          '/icon/add.svg'
         ]);
       })
   );
@@ -51,7 +55,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    caches.match(event.request)
+    caches.match(event.request, {ignoreSearch: true})
       .then((response) => {
         return response || fetch(event.request);
       })
